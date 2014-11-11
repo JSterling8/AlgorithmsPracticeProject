@@ -67,7 +67,7 @@
 public class EllysNumberGuessing {
     public int getNumber(int[] guesses, int[] answers){
         int correctAnswer = 0;
-        int[] possibleAnswers = {0,0};
+        int[] possibleAnswers = new int[2];
 
         // Get our control variables
         possibleAnswers[0] = guesses[0] - answers[0];
