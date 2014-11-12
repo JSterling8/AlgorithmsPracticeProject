@@ -13,13 +13,13 @@
  *
  */
 public class StringCompressionAlgorithm{
-	public char[] compress(String inputString){
+	public String compress(String inputString){
 		char[] input = inputString.toCharArray();
 		char[] compressed = new char[input.length];
 		int posInCompressedArray = 0;
 		for (int i = 0; i < input.length; i++){
 			if(posInCompressedArray > compressed.length - 2){
-				return input;  
+				return new String(input);
 			}
 			compressed[posInCompressedArray] = input[i];
 			posInCompressedArray++;
@@ -30,20 +30,26 @@ public class StringCompressionAlgorithm{
 			}
 			int numOfCharsToAdd = ("" + numOfChar).length();
 			if(posInCompressedArray + numOfCharsToAdd > compressed.length - 1){
-				return input;    
+				return new String(input);
 			}
 			if(numOfCharsToAdd == 1){
 				compressed[posInCompressedArray] = (char)(numOfChar + 48);
 				posInCompressedArray++;
 			} else {
-				String numOfCharAsString = "" + numOfChar;
+				String numOfCharAsString = String.valueOf(numOfChar);
 				for (char c : numOfCharAsString.toCharArray()){
 					compressed[posInCompressedArray] = c;
 					posInCompressedArray++;
 				}
 			}
-
 		}
-		return compressed;
+
+		return new String(compressed).trim();
 	}
+
+    public static void main(String[] args){
+        StringCompressionAlgorithm s = new StringCompressionAlgorithm();
+
+        System.out.println(s.compress("aaacb"));
+    }
 }
